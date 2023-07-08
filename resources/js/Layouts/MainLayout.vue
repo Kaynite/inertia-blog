@@ -1,0 +1,77 @@
+<script setup lang="ts">
+import AppFooter from "./Partials/Footer.vue";
+import NavLink from "@/Components/NavLink.vue";
+import { Link } from "@inertiajs/vue3";
+</script>
+
+<template>
+    <div id="main">
+        <div class="container mx-auto">
+            <div class="flex items-center justify-between py-6 lg:py-10">
+                <Link href="/" class="flex items-center">
+                    <span class="mr-2">
+                        <img src="/assets/img/logo.svg" alt="logo" />
+                    </span>
+                    <p class="hidden font-body text-2xl font-bold text-primary dark:text-white lg:block">
+                        Kareem
+                    </p>
+                </Link>
+                <div class="flex items-center lg:hidden">
+                    <i class="bx mr-8 cursor-pointer text-3xl text-primary dark:text-white" @click="themeSwitch()"
+                        :class="isDarkMode ? 'bxs-sun' : 'bxs-moon'"></i>
+
+                    <svg width="24" height="15" xmlns="http://www.w3.org/2000/svg" @click="isMobileMenuOpen = true"
+                        class="fill-current text-primary dark:text-white">
+                        <g fill-rule="evenodd">
+                            <rect width="24" height="3" rx="1.5" />
+                            <rect x="8" y="6" width="16" height="3" rx="1.5" />
+                            <rect x="4" y="12" width="20" height="3" rx="1.5" />
+                        </g>
+                    </svg>
+                </div>
+                <div class="hidden lg:block">
+                    <ul class="flex items-center">
+                        <NavLink label="Intro" to="/" />
+                        <NavLink label="Blog" to="/blog" />
+                        <NavLink label="Uses" to="/uses" />
+                        <NavLink label="Contact" to="/contact" />
+
+                        <li>
+                            <i class="bx cursor-pointer text-3xl text-primary dark:text-white" @click="themeSwitch()"
+                                :class="isDarkMode ? 'bxs-sun' : 'bxs-moon'"></i>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="pointer-events-none fixed inset-0 z-50 flex bg-black bg-opacity-80 opacity-0 transition-opacity lg:hidden"
+            :class="isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : ''">
+            <div class="ml-auto w-2/3 bg-green p-4 md:w-1/3">
+                <i class="bx bx-x absolute top-0 right-0 mt-4 mr-4 text-4xl text-white"
+                    @click="isMobileMenuOpen = false"></i>
+                <ul class="mt-8 flex flex-col">
+                    <li>
+                        <Link href="/" class="mb-3 block px-2 font-body text-lg font-medium text-white">Intro</Link>
+                    </li>
+
+                    <li>
+                        <Link href="/blog" class="mb-3 block px-2 font-body text-lg font-medium text-white">Blog</Link>
+                    </li>
+
+                    <li>
+                        <Link href="/uses" class="mb-3 block px-2 font-body text-lg font-medium text-white">Uses</Link>
+                    </li>
+
+                    <li>
+                        <Link href="/contact" class="mb-3 block px-2 font-body text-lg font-medium text-white">Contact</Link>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <slot />
+
+        <AppFooter />
+    </div>
+</template>
