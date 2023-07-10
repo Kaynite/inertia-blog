@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
-import NavLink from '@/Components/NavLink.vue';
 import MainLayout from "@/Layouts/MainLayout.vue";
 import HomePost from '@/Components/Post.vue';
 import { Post } from '@/types';
@@ -67,11 +66,11 @@ defineProps<{
                     <h3 class="ml-3 font-body text-2xl font-semibold text-primary dark:text-white">
                         My Story
                     </h3>
-                    <a href="/blog"
+                    <Link :href="route('posts.index')"
                         class="flex items-center pl-10 font-body italic text-green transition-colors hover:text-secondary dark:text-green-light dark:hover:text-secondary">
                         All posts
                         <img src="/assets/img/long-arrow-right.png" class="ml-3" alt="arrow right" />
-                    </a>
+                    </Link>
                 </div>
                 <div class="pt-8">
                     <HomePost :post="post" v-for="post in posts" :key="post.id" />
@@ -152,4 +151,3 @@ defineProps<{
         </div>
     </div>
 </template>
-
