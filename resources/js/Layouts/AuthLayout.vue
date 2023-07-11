@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import AppFooter from "./Partials/Footer.vue";
 import AppLogo from "./Partials/Logo.vue";
-import ThemeSwitcher from "./Partials/ThemeSwitcher.vue";
 import NavLink from "@/Components/NavLink.vue";
-import { ref } from "vue";
+import ThemeSwitcher from "./Partials/ThemeSwitcher.vue";
 
 const isMobileMenuOpen = ref<boolean>(false);
 </script>
@@ -27,11 +27,8 @@ const isMobileMenuOpen = ref<boolean>(false);
                 </div>
                 <div class="hidden lg:block">
                     <ul class="flex items-center">
-                        <NavLink label="Intro" :to="route('home')" />
-                        <NavLink label="Blog" :to="route('posts.index')" />
-                        <NavLink label="Contact" to="/contact" />
                         <NavLink label="Dashboard" :to="route('dashboard')" />
-
+                        <NavLink label="Logout" to="/logout" method="post" />
                         <li>
                             <ThemeSwitcher />
                         </li>
@@ -59,13 +56,11 @@ const isMobileMenuOpen = ref<boolean>(false);
                     </li>
 
                     <li>
-                        <Link href="/contact" class="mb-3 block px-2 font-body text-lg font-medium text-white">Contact
-                        </Link>
+                        <Link href="/contact" class="mb-3 block px-2 font-body text-lg font-medium text-white">Contact</Link>
                     </li>
                 </ul>
             </div>
         </div>
-
         <slot />
 
         <AppFooter />
