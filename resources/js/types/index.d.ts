@@ -15,6 +15,14 @@ export interface Post {
     id: number;
     title: string;
     body: string;
+    is_published: boolean,
     created_at: string;
     updated_at: string;
+}
+
+export type PaginatedCollection<T> = {
+    data: T[]
+    meta: {
+        links: Array<{ active: boolean, label: string, url: (string | null) }>,
+    }
 }

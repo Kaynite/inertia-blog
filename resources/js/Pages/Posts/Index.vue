@@ -1,16 +1,11 @@
 <script setup lang="ts">
 import MainLayout from '@/Layouts/MainLayout.vue';
-import { Post } from '@/types';
-import { Head, Link } from '@inertiajs/vue3';
+import { PaginatedCollection, Post } from '@/types';
 import BlogPost from '@/Components/Post.vue';
+import Paginator from '@/Components/Paginator.vue';
 
 defineProps<{
-    posts: {
-        data: Post[]
-        meta: {
-            links: Array<{ active: boolean, label: string, url: (string | null) }>,
-        }
-    }
+    posts: PaginatedCollection<Post>
 }>();
 
 defineOptions({
@@ -52,14 +47,7 @@ defineOptions({
             </div>
 
             <div class="flex pt-8 lg:pt-16">
-                <template v-for="link in posts.meta.links">
-                    <Link :href="link.url" v-html="link.label" v-if="link.url"
-                        class="ml-3 cursor-pointer border-2 px-3 py-1 font-body font-medium" :class="{
-                            'border-secondary text-secondary': link.active,
-                            'border-primary text-primary transition-colors hover:border-secondary hover:text-secondary dark:border-green-light dark:text-white dark:hover:border-secondary dark:hover:text-secondary': !link.active,
-                        }"
-                    />
-                </template>
+                <Paginator :links="posts.meta.links" />
             </div>
         </div>
     </div>
