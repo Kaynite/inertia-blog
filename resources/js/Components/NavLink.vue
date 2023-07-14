@@ -13,6 +13,10 @@ defineProps({
     },
     method: {
         required: false,
+    },
+    as: {
+        type: String,
+        required: false,
     }
 })
 </script>
@@ -21,7 +25,7 @@ defineProps({
         <div
             class="absolute left-0 bottom-0 z-20 h-0 w-full opacity-75 transition-all group-hover:h-2 group-hover:bg-yellow">
         </div>
-        <Link :href="to" :method="(method as Method)"
+        <Link :href="to" :method="(method as Method)" :as="as"
             class="relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary">
         {{ label }}
         </Link>

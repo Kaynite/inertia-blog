@@ -29,7 +29,7 @@ const isMobileMenuOpen = ref<boolean>(false);
                     <ul class="flex items-center">
                         <NavLink label="Dashboard" :to="route('dashboard.home')" />
                         <NavLink label="Categories" :to="route('dashboard.categories.index')" />
-                        <NavLink label="Logout" to="/logout" method="post" />
+                        <NavLink label="Logout" :to="route('logout')" method="post" as="button" />
                         <li>
                             <ThemeSwitcher />
                         </li>

@@ -27,7 +27,7 @@ const isMobileMenuOpen = ref<boolean>(false);
                 </div>
                 <div class="hidden lg:block">
                     <ul class="flex items-center">
-                        <NavLink label="Intro" :to="route('home')" />
+                        <NavLink label="Home" :to="route('home')" />
                         <NavLink label="Blog" :to="route('posts.index')" />
                         <NavLink label="Contact" to="/contact" />
                         <NavLink label="Dashboard" :to="route('dashboard.home')" />

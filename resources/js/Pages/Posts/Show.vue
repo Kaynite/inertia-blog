@@ -36,7 +36,7 @@ defineOptions({
                     </p>
                     <span class="vdark:text-white font-body text-grey">//</span>
                     <p class="pl-2 font-body font-light text-primary dark:text-white">
-                        4 min read
+                        {{ post.reading_time }} min read
                     </p>
                 </div>
             </div>

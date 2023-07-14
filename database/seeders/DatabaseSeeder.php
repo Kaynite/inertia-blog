@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->seedCategories();
 
         $this->command->warn("Seeding demo posts...");
-        $this->withProgressBar(100, fn() => Post::factory()->create());
+        $this->withProgressBar(100, fn() => Post::factory()->create()->categories()->attach(Category::inRandomOrder()->first()));
     }
 
     private function seedCategories()

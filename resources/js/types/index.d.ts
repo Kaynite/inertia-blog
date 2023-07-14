@@ -16,6 +16,7 @@ export interface Post extends Record<string, unknown> {
     title: string;
     body: string;
     is_published: boolean;
+    reading_time?: number,
     created_at: string;
     updated_at: string;
     categories?: Category[];
