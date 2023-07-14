@@ -11,11 +11,19 @@ export type PageProps<T extends Record<string, unknown> = Record<string, unknown
     };
 };
 
-export interface Post {
+export interface Post extends Record<string, unknown> {
     id: number;
     title: string;
     body: string;
-    is_published: boolean,
+    is_published: boolean;
+    created_at: string;
+    updated_at: string;
+    categories?: Category[];
+}
+
+export interface Category extends Record<string, unknown> {
+    id: number;
+    name: string;
     created_at: string;
     updated_at: string;
 }

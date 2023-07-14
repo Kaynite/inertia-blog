@@ -28,6 +28,7 @@ const isMobileMenuOpen = ref<boolean>(false);
                 <div class="hidden lg:block">
                     <ul class="flex items-center">
                         <NavLink label="Dashboard" :to="route('dashboard.home')" />
+                        <NavLink label="Categories" :to="route('dashboard.categories.index')" />
                         <NavLink label="Logout" to="/logout" method="post" />
                         <li>
                             <ThemeSwitcher />

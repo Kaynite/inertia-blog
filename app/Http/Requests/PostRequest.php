@@ -17,6 +17,8 @@ class PostRequest extends FormRequest
             'title' => ['required', 'string', 'max:255'],
             'body' => ['required', 'string'],
             'is_published' => ['required', 'boolean'],
+            'categories' => ['required', 'array'],
+            'categories.*' => ['required', 'exists:categories,id'],
         ];
     }
 }

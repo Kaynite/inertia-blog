@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function home(): Response
     {
-        $posts = Post::latest('id')->take(5)->get();
+        $posts = Post::with('categories')->latest('id')->take(5)->get();
 
         return Inertia::render('Welcome', [
             'posts' => PostResource::collection($posts),

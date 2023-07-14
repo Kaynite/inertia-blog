@@ -16,6 +16,7 @@ class PostResource extends JsonResource
             'is_published' => $this->is_published,
             'created_at' => $this->created_at->format('M d, Y'),
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
+            'categories' => CategoryResource::collection($this->whenLoaded('categories')),
         ];
     }
 }

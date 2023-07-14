@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { Head, useForm } from '@inertiajs/vue3';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
-import { Post } from '@/types';
+import { Category, Post } from '@/types';
 
 const { post } = defineProps<{
     post: Post;
+    categories: Category[]
 }>();
 
 defineOptions({
     layout: AuthLayout
 });
+
+const category_ids: (number[] | undefined) = post.categories?.map((c) => c.id)
 
 const form = useForm(post);
 
@@ -31,6 +34,13 @@ const submit = () => form.put(route('dashboard.posts.update', post.id));
                 <label for="body" class="dark:text-white">Body</label>
                 <textarea id="body" class="mt-1 block w-full" cols="30" rows="10" v-model="form.body" required></textarea>
                 <small class="mt-2 text-red">{{ form.errors.body }}</small>
+            </div>
+
+            <div class="block mt-4">
+                <label for="categories" class="dark:text-white">Categories</label>
+                <select v-model="category_ids" id="categories" class="mt-1 block w-full" multiple>
+                    <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
+                </select>
             </div>
 
             <div class="block mt-4">

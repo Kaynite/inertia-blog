@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Response;
@@ -12,12 +13,18 @@ class PostController extends Controller
 {
     public function create(): Response
     {
-        return inertia("Dashboard/Posts/Create");
+        $categories = Category::all();
+
+        return inertia('Dashboard/Posts/Create', [
+            'categories' => $categories,
+        ]);
     }
 
     public function store(PostRequest $request): RedirectResponse
     {
-        Post::create($request->validated());
+        $post = Post::create($request->validated());
+
+        $post->categories()->attach($request->categories);
 
         return to_route('dashboard.home');
     }
@@ -25,7 +32,8 @@ class PostController extends Controller
     public function edit(Post $post): Response
     {
         return inertia('Dashboard/Posts/Edit', [
-            'post' => $post,
+            'post' => $post->load('categories'),
+            'categories' => Category::all(),
         ]);
     }
 

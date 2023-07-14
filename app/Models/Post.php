@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Http\Resources\PostResource;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
@@ -19,6 +20,12 @@ class Post extends Model
     protected $casts = [
         'is_published' => 'boolean',
     ];
+
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class)
+            ->withTimestamps();
+    }
 
     public function toResource(): PostResource
     {

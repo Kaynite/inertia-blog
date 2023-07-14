@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { Head, useForm } from '@inertiajs/vue3';
 import AuthLayout from '@/Layouts/AuthLayout.vue';
-import { Post } from '@/types';
+import { Category } from '@/types';
+
+defineProps<{
+    categories: Category[]
+}>()
 
 defineOptions({
     layout: AuthLayout
@@ -11,13 +15,14 @@ const form = useForm({
     title: '',
     body: '',
     is_published: false,
+    categories: []
 });
 
 const submit = () => form.post(route('dashboard.posts.store'));
 </script>
 
 <template>
-    <Head title="Edit Post" />
+    <Head title="Create Post" />
 
     <div class="container mx-auto mb-10">
         <form @submit.prevent="submit">
@@ -34,10 +39,18 @@ const submit = () => form.post(route('dashboard.posts.store'));
             </div>
 
             <div class="block mt-4">
+                <label for="categories" class="dark:text-white">Categories</label>
+                <select v-model="form.categories" id="categories" class="mt-1 block w-full" multiple>
+                    <option v-for="category in categories" :value="category.id">{{ category.name }}</option>
+                </select>
+            </div>
+
+            <div class="block mt-4">
                 <label class="flex items-center">
                     <input name="remember" v-model="form.is_published" type="checkbox" />
                     <span class="ml-2 text-sm text-gray-600 dark:text-white">Is Published</span>
                 </label>
+                <small class="mt-2 text-red">{{ form.errors.is_published }}</small>
             </div>
 
             <div class="flex items-center justify-end mt-4">

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { Method, PageProps, Progress } from '@inertiajs/core';
+import { Method } from '@inertiajs/core';
 
 defineProps({
     label: {
