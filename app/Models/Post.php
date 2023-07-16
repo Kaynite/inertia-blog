@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Str;
 use App\Http\Resources\PostResource;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Str;
 
 class Post extends Model
 {
@@ -31,7 +31,7 @@ class Post extends Model
 
     public function readingTime(): Attribute
     {
-        return Attribute::get(fn() => Str::readDuration($this->body));
+        return Attribute::get(fn () => Str::readDuration($this->body));
     }
 
     public function toResource(): PostResource

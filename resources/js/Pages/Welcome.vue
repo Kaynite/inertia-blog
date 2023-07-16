@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import { Head, Link } from '@inertiajs/vue3';
 import MainLayout from "@/Layouts/MainLayout.vue";
 import HomePost from '@/Components/Post.vue';
-import { Post } from '@/types';
+import HomeProject from "@/Components/Project.vue";
+import { Post, Project } from '@/types';
 
 defineOptions({
     layout: MainLayout
 });
 
 defineProps<{
-    posts: Post[]
+    posts: Post[],
+    projects: Project[]
 }>()
-
 </script>
 
 <template>
@@ -83,69 +83,14 @@ defineProps<{
                     <h3 class="ml-3 font-body text-2xl font-semibold text-primary dark:text-white">
                         My Projects
                     </h3>
+                    <Link :href="route('projects.index')"
+                        class="flex items-center pl-10 font-body italic text-green transition-colors hover:text-secondary dark:text-green-light dark:hover:text-secondary">
+                        All projects
+                        <img src="/assets/img/long-arrow-right.png" class="ml-3" alt="arrow right" />
+                    </Link>
                 </div>
                 <div>
-
-                    <a href=" / "
-                        class="mb-6 flex items-center justify-between border border-grey-lighter px-4 py-4 sm:px-6">
-                        <span class="w-9/10 pr-8">
-                            <h4 class="font-body text-lg font-semibold text-primary dark:text-white">
-                                TailwindCSS
-                            </h4>
-                            <p class="font-body font-light text-primary dark:text-white">
-                                Rapidly build modern websites without ever leaving your HTML.
-                            </p>
-                        </span>
-                        <span class="w-1/10">
-                            <img src="/assets/img/chevron-right.png" class="mx-auto" alt="chevron right" />
-                        </span>
-                    </a>
-
-                    <a href=" / "
-                        class="mb-6 flex items-center justify-between border border-grey-lighter px-4 py-4 sm:px-6">
-                        <span class="w-9/10 pr-8">
-                            <h4 class="font-body text-lg font-semibold text-primary dark:text-white">
-                                Maizzle
-                            </h4>
-                            <p class="font-body font-light text-primary dark:text-white">
-                                Framework for Rapid Email Prototyping
-                            </p>
-                        </span>
-                        <span class="w-1/10">
-                            <img src="/assets/img/chevron-right.png" class="mx-auto" alt="chevron right" />
-                        </span>
-                    </a>
-
-                    <a href=" / "
-                        class="mb-6 flex items-center justify-between border border-grey-lighter px-4 py-4 sm:px-6">
-                        <span class="w-9/10 pr-8">
-                            <h4 class="font-body text-lg font-semibold text-primary dark:text-white">
-                                Alpine.js
-                            </h4>
-                            <p class="font-body font-light text-primary dark:text-white">
-                                Think of it like Tailwind for JavaScript.
-                            </p>
-                        </span>
-                        <span class="w-1/10">
-                            <img src="/assets/img/chevron-right.png" class="mx-auto" alt="chevron right" />
-                        </span>
-                    </a>
-
-                    <a href=" / "
-                        class="mb-6 flex items-center justify-between border border-grey-lighter px-4 py-4 sm:px-6">
-                        <span class="w-9/10 pr-8">
-                            <h4 class="font-body text-lg font-semibold text-primary dark:text-white">
-                                PostCSS
-                            </h4>
-                            <p class="font-body font-light text-primary dark:text-white">
-                                A tool for transforming CSS with JavaScript
-                            </p>
-                        </span>
-                        <span class="w-1/10">
-                            <img src="/assets/img/chevron-right.png" class="mx-auto" alt="chevron right" />
-                        </span>
-                    </a>
-
+                    <HomeProject :project="project" v-for="project in projects" :key="project.id" />
                 </div>
             </div>
         </div>

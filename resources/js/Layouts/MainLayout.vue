@@ -30,8 +30,7 @@ const isMobileMenuOpen = ref<boolean>(false);
                         <NavLink label="Home" :to="route('home')" />
                         <NavLink label="Blog" :to="route('posts.index')" />
                         <NavLink label="Contact" to="/contact" />
-                        <NavLink label="Dashboard" :to="route('dashboard.home')" />
-
+                        <NavLink label="Login" :to="route('dashboard.home')" />
                         <li>
                             <ThemeSwitcher />
                         </li>

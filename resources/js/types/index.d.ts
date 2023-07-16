@@ -22,6 +22,16 @@ export interface Post extends Record<string, unknown> {
     categories?: Category[];
 }
 
+export interface Project extends Record<string, unknown> {
+    id: number;
+    name: string;
+    brief: string;
+    body: string;
+    is_published: boolean;
+    created_at: string;
+    updated_at: string;
+}
+
 export interface Category extends Record<string, unknown> {
     id: number;
     name: string;

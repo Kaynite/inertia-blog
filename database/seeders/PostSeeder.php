@@ -12,8 +12,8 @@ class PostSeeder extends Seeder
 
     public function run(): void
     {
-        $this->command->warn("Seeding Demo Posts...");
+        $this->command->warn('Seeding Demo Posts...');
 
-        $this->withProgressBar(100, fn() => Post::factory()->create());
+        $this->withProgressBar(100, fn () => Post::factory()->create());
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Str;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,8 +23,8 @@ class AppServiceProvider extends ServiceProvider
     {
         JsonResource::withoutWrapping();
 
-        Str::macro('readDuration', function(...$text) {
-            $totalWords = str_word_count(implode(" ", $text));
+        Str::macro('readDuration', function (...$text) {
+            $totalWords = str_word_count(implode(' ', $text));
             $minutesToRead = round($totalWords / 200);
 
             return (int) max(1, $minutesToRead);
